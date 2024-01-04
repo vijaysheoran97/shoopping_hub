@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:shoopping_hub/utils/app_constant.dart';
 
-class MainScreen extends StatelessWidget {
+import '../../utils/app_constant.dart';
+class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,3 +24,4 @@ class MainScreen extends StatelessWidget {
     );
   }
 }
+
