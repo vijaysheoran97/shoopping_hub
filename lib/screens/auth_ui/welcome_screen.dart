@@ -19,7 +19,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         centerTitle: true,
         backgroundColor: AppConstant.appScendoryColor,
         title: Text(
-          'Welcome to my app',
+          'Welcome to shopping hub',
           style: TextStyle(color: AppConstant.appTextColor),
         ),
       ),

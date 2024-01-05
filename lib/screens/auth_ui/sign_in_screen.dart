@@ -32,9 +32,6 @@ class _SignInScreenState extends State<SignInScreen> {
               child: Column(
 
                 children: [
-                  SizedBox(
-                    height: Get.height / 30,
-                  ),
                   isKeyboardVisible
                       ? Text('Welcome to Shopping Hub',style: TextStyle(
                       color: AppConstant.appScendoryColor,
