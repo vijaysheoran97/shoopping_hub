@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shoopping_hub/screens/auth_ui/welcome_screen.dart';
 
 import '../../utils/app_constant.dart';
 class MainScreen extends StatefulWidget {
@@ -16,10 +19,23 @@ class _MainScreenState extends State<MainScreen> {
         backgroundColor: AppConstant.appMainColor,
         title: Text(
           AppConstant.appMainName,
-          style: TextStyle(
+          style: const TextStyle(
               fontWeight: FontWeight.w500, color: AppConstant.appTextColor),
         ),
         centerTitle: true,
+        actions: [
+          GestureDetector(
+            onTap: ()async{
+              GoogleSignIn googleSignIn = GoogleSignIn();
+             await googleSignIn.signOut();
+              Get.offAll(() => WelcomeScreen());
+            },
+            child: const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Icon(Icons.logout),
+            ),
+          ),
+        ],
       ),
     );
   }

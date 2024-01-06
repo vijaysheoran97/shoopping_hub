@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shoopping_hub/models/user_model.dart';
@@ -15,6 +16,7 @@ class GoogleSignInController extends GetxController {
           await googleSignIn.signIn();
 
       if (googleSignInAccount != null) {
+        EasyLoading.show(status: "Please wait..");
         final GoogleSignInAuthentication googleSignInAuthentication =
             await googleSignInAccount.authentication;
 
@@ -47,10 +49,12 @@ class GoogleSignInController extends GetxController {
               .collection('users')
               .doc(user.uid)
               .set(userModel.toMap());
+         EasyLoading.dismiss();
          Get.offAll(() => const MainScreen());
         }
       }
     } catch (e) {
+      EasyLoading.dismiss();
       print("error $e");
     }
   }
