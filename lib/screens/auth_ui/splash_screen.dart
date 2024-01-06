@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shoopping_hub/screens/auth_ui/welcome_screen.dart';
-import 'package:shoopping_hub/screens/user_panel/main_screen.dart';
 import 'package:shoopping_hub/utils/app_constant.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -33,30 +32,28 @@ class _SplashScreenState extends State<SplashScreen> {
         backgroundColor: AppConstant.appScendoryColor,
         elevation: 0,
       ),
-      body: Container(
-        child: Column(
-          children: [
-            Expanded(
-              child: Container(
-                width: Get.width,
-                alignment: Alignment.center,
-                child: Lottie.asset('assets/images/splash-icon.json'),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(bottom: 20.0),
+      body: Column(
+        children: [
+          Expanded(
+            child: Container(
               width: Get.width,
               alignment: Alignment.center,
-              child: Text(
-                AppConstant.appPoweredBy,
-                style: TextStyle(
-                    color: AppConstant.appTextColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12),
-              ),
-            )
-          ],
-        ),
+              child: Lottie.asset('assets/images/splash-icon.json'),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(bottom: 20.0),
+            width: Get.width,
+            alignment: Alignment.center,
+            child: Text(
+              AppConstant.appPoweredBy,
+              style: const TextStyle(
+                  color: AppConstant.appTextColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12),
+            ),
+          )
+        ],
       ),
     );
   }

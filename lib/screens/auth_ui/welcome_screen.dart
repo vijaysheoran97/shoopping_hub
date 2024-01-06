@@ -125,7 +125,7 @@ class WelcomeScreen extends StatelessWidget {
           style: TextStyle(color: AppConstant.appTextColor),
         ),
       ),
-      body: Container(
+      body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -133,7 +133,7 @@ class WelcomeScreen extends StatelessWidget {
               child: Lottie.asset('assets/images/splash-icon.json'),
             ),
             Container(
-              margin: EdgeInsets.only(top: 20.0),
+              margin: const EdgeInsets.only(top: 20.0),
               child: const Text(
                 "Happy Shopping",
                 style: TextStyle(
