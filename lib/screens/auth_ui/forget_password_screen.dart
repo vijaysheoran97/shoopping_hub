@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:shoopping_hub/screens/auth_ui/sign_up_screen.dart';
 import 'package:shoopping_hub/utils/app_constant.dart';
 
 import '../../controllers/forget_password_controller.dart';
