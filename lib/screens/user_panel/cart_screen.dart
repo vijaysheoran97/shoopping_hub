@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shoopping_hub/controllers/cart_price_controller.dart';
 import 'package:shoopping_hub/models/cart_model.dart';
 import 'package:shoopping_hub/utils/app_constant.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,8 +17,8 @@ class CartScreen extends StatefulWidget {
 
 class _CartScreenState extends State<CartScreen> {
   User? user = FirebaseAuth.instance.currentUser;
-  // final ProductPriceController productPriceController =
-  //     Get.put(ProductPriceController());
+  final ProductPriceController productPriceController =
+      Get.put(ProductPriceController());
 
   @override
   Widget build(BuildContext context) {
@@ -83,8 +84,8 @@ class _CartScreenState extends State<CartScreen> {
                         productData['productTotalPrice'].toString()),
                   );
 
-                  //calculate price
-                //  productPriceController.fetchProductPrice();
+                  // todo calculate price
+                  productPriceController.fetchProductPrice();
                   return SwipeActionCell(
                     key: ObjectKey(cartModel.productId),
                     trailingActions: [
@@ -189,17 +190,33 @@ class _CartScreenState extends State<CartScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // Obx(
-            //   () => Text(
-            //     " Total ${productPriceController.totalPrice.value.toStringAsFixed(1)} : PKR",
-            //     style: TextStyle(fontWeight: FontWeight.bold),
-            //   ),
-            // ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Material(
                 child: Container(
-                  width: Get.width / 2.0,
+                  width: Get.width / 2.2,
+                  height: Get.height / 18,
+                  decoration: BoxDecoration(
+                      color: AppConstant.appScendoryColor,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Obx(
+                    () => Center(
+                      child: Text(
+                        " Total ${productPriceController.totalPrice.value.toStringAsFixed(1)} : PKR",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: AppConstant.appTextColor),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Material(
+                child: Container(
+                  width: Get.width / 2.2,
                   height: Get.height / 18,
                   decoration: BoxDecoration(
                     color: AppConstant.appScendoryColor,
@@ -208,7 +225,10 @@ class _CartScreenState extends State<CartScreen> {
                   child: TextButton(
                     child: Text(
                       "Checkout",
-                      style: TextStyle(color: AppConstant.appTextColor),
+                      style: TextStyle(
+                          color: AppConstant.appTextColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16),
                     ),
                     onPressed: () {
                       // Get.to(() => CheckOutScreen());

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shoopping_hub/models/product_model.dart';
+import 'package:shoopping_hub/screens/user_panel/cart_screen.dart';
 import 'package:shoopping_hub/utils/app_constant.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -32,7 +33,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ),
         actions: [
           GestureDetector(
-            // onTap: () => Get.to(() => CartScreen()),
+            onTap: () => Get.to(() => CartScreen()),
             child: const Padding(
               padding: EdgeInsets.all(8.0),
               child: Icon(
