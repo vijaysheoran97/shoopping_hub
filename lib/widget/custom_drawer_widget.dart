@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shoopping_hub/screens/user_panel/all_order_screen.dart';
 import 'package:shoopping_hub/utils/app_constant.dart';
 
 import '../screens/auth_ui/welcome_screen.dart';
@@ -98,7 +99,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 ),
               ),
             ),
-            const Padding(
+             Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: 20.0,
               ),
@@ -116,6 +117,10 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                   Icons.arrow_forward_ios_rounded,
                   color: AppConstant.appTextColor,
                 ),
+                onTap: (){
+                  Get.back();
+                  Get.to(() => AllOrdersScreen());
+                },
               ),
             ),
             const Padding(

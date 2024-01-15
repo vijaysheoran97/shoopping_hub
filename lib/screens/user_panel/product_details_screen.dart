@@ -13,6 +13,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   ProductModel productModel;
+
   ProductDetailsScreen({super.key, required this.productModel});
 
   @override
@@ -21,6 +22,7 @@ class ProductDetailsScreen extends StatefulWidget {
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   User? user = FirebaseAuth.instance.currentUser;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +49,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         child: Column(
           children: [
             //product images
-        
+
             SizedBox(
               height: Get.height / 60,
             ),
@@ -55,21 +57,22 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               items: widget.productModel.productImages
                   .map(
                     (imageUrls) => ClipRRect(
-                  borderRadius: BorderRadius.circular(10.0),
-                  child: CachedNetworkImage(
-                    imageUrl: imageUrls,
-                    fit: BoxFit.cover,
-                    width: Get.width - 10,
-                    placeholder: (context, url) => const ColoredBox(
-                      color: Colors.white,
-                      child: Center(
-                        child: CupertinoActivityIndicator(),
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: CachedNetworkImage(
+                        imageUrl: imageUrls,
+                        fit: BoxFit.cover,
+                        width: Get.width - 10,
+                        placeholder: (context, url) => const ColoredBox(
+                          color: Colors.white,
+                          child: Center(
+                            child: CupertinoActivityIndicator(),
+                          ),
+                        ),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
                       ),
                     ),
-                    errorWidget: (context, url, error) => const Icon(Icons.error),
-                  ),
-                ),
-              )
+                  )
                   .toList(),
               options: CarouselOptions(
                 scrollDirection: Axis.horizontal,
@@ -78,7 +81,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 viewportFraction: 1,
               ),
             ),
-        
+
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
@@ -110,13 +113,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         child: Row(
                           children: [
                             widget.productModel.isSale == true &&
-                                widget.productModel.salePrice != ''
+                                    widget.productModel.salePrice != ''
                                 ? Text(
-                              "PKR: " + widget.productModel.salePrice,
-                            )
+                                    "PKR: " + widget.productModel.salePrice,
+                                  )
                                 : Text(
-                              "PKR: " + widget.productModel.fullPrice,
-                            ),
+                                    "PKR: " + widget.productModel.fullPrice,
+                                  ),
                           ],
                         ),
                       ),
@@ -185,7 +188,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 ),
                                 onPressed: () async {
                                   // Get.to(() => SignInScreen());
-        
+
                                   await checkProductExistence(uId: user!.uid);
                                 },
                               ),
@@ -207,9 +210,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   static Future<void> sendMessageOnWhatsApp({
     required ProductModel productModel,
   }) async {
-    final number = "+919991112233";
+    final number = "+919813281868";
     final message =
-        "Hello Codexia \n i want to know about this product \n ${productModel.productName} \n ${productModel.productId}";
+        "Hello Shopping Hub"
+        " \n i want to know about this product"
+        " \n ${productModel.productName}"
+        " \n ${productModel.productId}";
 
     final url = 'https://wa.me/$number?text=${Uri.encodeComponent(message)}';
 
@@ -238,8 +244,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       int currentQuantity = snapshot['productQuantity'];
       int updatedQuantity = currentQuantity + quantityIncrement;
       double totalPrice = double.parse(widget.productModel.isSale
-          ? widget.productModel.salePrice
-          : widget.productModel.fullPrice) *
+              ? widget.productModel.salePrice
+              : widget.productModel.fullPrice) *
           updatedQuantity;
 
       await documentReference.update({
